@@ -34,10 +34,11 @@ class MainActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { result ->
                 for (note in result) {
+                    val id = note.id
                     val title = note.data["title"].toString()
                     val desc = note.data["description"].toString()
 
-                    tempNotes += noteData(title, desc)
+                    tempNotes += noteData(id,title, desc)
 
                 }
                 rvNotes.adapter = NoteAdapter(this,tempNotes)

@@ -25,6 +25,7 @@ class NoteAdapter(private val context: Context, private var noteData: MutableLis
 
         holder.itemView.setOnClickListener {
             val i = Intent(context,ViewNoteActivity::class.java)
+            i.putExtra("ID",noteData[position].id)
             i.putExtra("TITLE",noteData[position].title)
             i.putExtra("DESCRIPTION",noteData[position].desc)
             context.startActivity(i)

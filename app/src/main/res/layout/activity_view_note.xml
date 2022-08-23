@@ -10,7 +10,7 @@
     tools:context=".ViewNoteActivity">
 
     <!--    header-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -26,7 +26,16 @@
             android:padding="10dp"
             android:src="@drawable/ic_back" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded_box"
+            android:padding="10dp"
+            android:src="@drawable/ic_delete" />
+
+    </RelativeLayout>
 
 
     <RelativeLayout

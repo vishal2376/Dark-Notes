@@ -19,6 +19,7 @@
 
         <!--        back button-->
         <ImageView
+            android:id="@+id/imgBack"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_back"

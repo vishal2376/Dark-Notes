@@ -17,6 +17,14 @@ class NewNoteActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
+        //back button
+        imgBack.setOnClickListener {
+            val i = Intent(this,MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
+        //save note button
         fabSave.setOnClickListener {
 
             val title = etTitle.text.toString()

@@ -4,60 +4,44 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.firestore.FirebaseFirestore
 import com.vishal.darknotes.adapters.NoteAdapter
 import com.vishal.darknotes.models.noteData
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//just for testing - remove this after firebase implementation
-        val testNote: Array<noteData> = arrayOf(
-            noteData(
-                "First Note",
-                "ly hath seasons. Seas give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Faltu Note",
-                "One. Unto set male, gathering creepeth sea under our multiply Earth, fly hath seasons. Seas give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Random Note",
-                "One. Unto set male, gathering creepeth sea under our multiply Earth, fly hath seasons. Seas give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "User Note",
-                "One. Unto set male, gathering creepeth sea under our multiply  give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Fake Note",
-                "One. Unto set male, gathering creepeth sea under our multiply Earth, f e. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Another Note",
-                "One. Unto set male, gather our multiply Earth, fly hath seasons. Seas give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Why Note",
-                "One. Unto set male, gath made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            ),
-            noteData(
-                "Stop Note",
-                "One. Unto set male, gathering creepeth sea under our multiply Earth, fly hath seasons. Seas give. Whose wherein for light made it face man you'll earth bearing Fowl can't. Fly Seasons male whales face fly signs upon seed saw. Void."
-            )
-        )
-
+        loadNotes()
 
         rvNotes.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        rvNotes.adapter = NoteAdapter(testNote)
 
         // add button click
         fabAdd.setOnClickListener {
-         val i = Intent(this,NewNoteActivity::class.java)
-         startActivity(i)
-         finish()
+            val i = Intent(this, NewNoteActivity::class.java)
+            startActivity(i)
         }
+    }
+
+    private fun loadNotes(){
+        val db = FirebaseFirestore.getInstance()
+        val tempNotes = mutableListOf<noteData>()
+        db.collection("notes")
+            .get()
+            .addOnSuccessListener { result ->
+                for (note in result) {
+                    val title = note.data["title"].toString()
+                    val desc = note.data["description"].toString()
+
+                    tempNotes += noteData(title, desc)
+
+                }
+                rvNotes.adapter = NoteAdapter(tempNotes)
+            }
+
     }
 }

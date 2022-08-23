@@ -9,7 +9,7 @@ import com.vishal.darknotes.R
 import com.vishal.darknotes.models.noteData
 import kotlinx.android.synthetic.main.note_item.view.*
 
-class NoteAdapter(private var noteData: Array<noteData>): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private var noteData: MutableList<noteData>): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.note_item,parent,false)

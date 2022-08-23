@@ -1,5 +1,6 @@
 package com.vishal.darknotes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -52,5 +53,11 @@ class MainActivity : AppCompatActivity() {
         rvNotes.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rvNotes.adapter = NoteAdapter(testNote)
 
+        // add button click
+        fabAdd.setOnClickListener {
+         val i = Intent(this,NewNoteActivity::class.java)
+         startActivity(i)
+         finish()
+        }
     }
 }

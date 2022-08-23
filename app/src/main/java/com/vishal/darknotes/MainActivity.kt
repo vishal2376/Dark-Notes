@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     tempNotes += noteData(title, desc)
 
                 }
-                rvNotes.adapter = NoteAdapter(tempNotes)
+                rvNotes.adapter = NoteAdapter(this,tempNotes)
             }
 
     }

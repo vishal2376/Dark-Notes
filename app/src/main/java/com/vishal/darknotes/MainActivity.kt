@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         fabAdd.setOnClickListener {
             val i = Intent(this, NewNoteActivity::class.java)
             startActivity(i)
+            finish()
         }
     }
 

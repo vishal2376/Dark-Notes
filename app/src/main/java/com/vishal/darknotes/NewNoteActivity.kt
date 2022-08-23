@@ -1,5 +1,6 @@
 package com.vishal.darknotes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -41,6 +42,9 @@ class NewNoteActivity : AppCompatActivity() {
             .add(tempNote)
             .addOnSuccessListener {
                 Toast.makeText(this, "Note Added", Toast.LENGTH_SHORT).show()
+                val i = Intent(this,MainActivity::class.java)
+                startActivity(i)
+                finish()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()

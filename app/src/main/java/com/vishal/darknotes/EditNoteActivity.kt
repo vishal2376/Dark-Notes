@@ -20,7 +20,7 @@ class EditNoteActivity : AppCompatActivity() {
 
         //back button
         imgBack.setOnClickListener {
-            val i = Intent(this, ViewNoteActivity::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }

@@ -24,6 +24,9 @@ class NewNoteActivity : AppCompatActivity() {
             if (title.isNotEmpty() and desc.isNotEmpty()) {
                 saveNote(title, desc)
             }
+            else{
+                Toast.makeText(this,"Can't save empty note",Toast.LENGTH_SHORT).show()
+            }
         }
 
     }

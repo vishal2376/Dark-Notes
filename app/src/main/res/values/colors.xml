@@ -15,5 +15,6 @@
 
     <color name="textPrimary">#FFFFFFFF</color>
     <color name="textSecondary">#a18478</color>
+    <color name="grey">#5a5a5a</color>
 
 </resources>
